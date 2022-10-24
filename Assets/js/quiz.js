@@ -20,7 +20,7 @@ var score = 0;
 var currentQuestion = 0;
 var countdownTimer;
 
-function stopGame() {
+function StopGame() {
     
     // This will stop the countdown timer when the game stops
     clearInterval(countdownTimer)
@@ -44,3 +44,23 @@ function SaveScore () {
     }
 }
 
+// This function changes to show the score.html page
+function ViewScores () {
+    window.location.href = 'scores.html'
+}
+
+// If the user selects the correct score, their scoe will add one. If not, it will subtract 1
+// Also, after the score has been selected and the score has changed, the next question will appear
+function SelectAnswer () {
+    var correctanswer = questions[currentQuestion].answer;
+    var userAnswer = e.target.textContent;
+
+    if (correctanswer = userAnswer) {
+        score ++;
+
+    } else {
+        score --;
+    }
+
+    displayQuestion();
+}
