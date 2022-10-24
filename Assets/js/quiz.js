@@ -55,7 +55,7 @@ function SelectAnswer (e) {
     var correctanswer = questions[currentQuestion].answer;
     var userAnswer = e.target.textContent;
 
-    if (correctanswer = userAnswer) {
+    if (correctanswer === userAnswer) {
         score ++;
 
     } else {
