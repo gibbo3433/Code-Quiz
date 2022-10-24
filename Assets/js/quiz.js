@@ -64,3 +64,37 @@ function SelectAnswer () {
 
     displayQuestion();
 }
+
+function displayQuestion () {
+    
+    // This moves onto the next question
+    currentQuestion ++;
+    console.log (" The question now is " + currentQuestion);
+
+    if (currentQuestion >= questions.length) {
+        StopGame ();
+        return
+    }
+
+    // Load the question into the title for the user to see
+    var question = questions[currentQuestion];
+    document.getElementById("question").textContent = question.title
+
+    // Clears the options script back to nothing
+    options.innerHTML = "";
+
+    // This will choose the next questions until all the questions have been chosen
+    for (var i = 0; 1 < question.choices.length; i++) {
+        
+        // This will make a new "div", give the person the choices to answer from, when the click an answer it will run the "SelectAnswer" function
+        var option = document.createElement("div");
+        option.textContent = question.choices[i];
+        option.onclick = SelectAnswer;
+        option.classList.add["option"];
+
+        // This will add the persons choice into the options variable
+        options.appendChild(option);
+    }
+
+}
+
