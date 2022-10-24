@@ -1,10 +1,64 @@
 
-/* This will change the  */
-
-html, body {
+/* This will change the body in each html it is assigned to */
+body {
     margin: 0;
     height: 90%;
     width: 90%;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    
 }
+
+/* This will change the body in each html it is assigned to */
+header {
+    background-color: aqua;
+    padding: 15px;
+    margin: 15px;
+    border-radius: 15px;
+    text-align: center;
+    color: rgb(17, 20, 209);
+}
+
+/* This will change the main in each html it is assigned to */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+/* This will change the div in the header */
+header div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+/* This will change all the buttons in each html it is assigned to */
+button, h1 {
+    background-color: aqua;
+    color:  rgb(17, 20, 209);
+    padding: 15px;
+    margin: 15px;
+    border-radius: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+}
+
+/* This will change the quiz "div" */
+#quiz {
+    background-color: aqua;
+    padding: 15px;
+    margin: 15px;
+    border-radius: 40px;
+    display: flex;
+}
+
+#options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+} 

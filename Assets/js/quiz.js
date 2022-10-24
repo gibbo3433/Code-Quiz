@@ -3,24 +3,24 @@ var saveScore = document.getElementById("saveScore")
 var playAgain = document.getElementById("playAgain")
 
 var welcome = document.getElementById("welcome")
-
 var quiz = document.getElementById("quiz")
-var question = document.getElementById("question")
+var result = document.getElementById("result")
+
 var options = document.getElementById("options")
 var message = document.getElementById("message")
 
-var result = document.getElementById("result")
+
 var summary = document.getElementById("summary")
-var scores = document.getElementById("scores")
+
 var timer = document.getElementById("timer")
-var initials = document.getElementById("initials")
+
 
 var secondsleft = 0;
 var score = 0;
 var currentQuestion = 0;
 var countdownTimer;
 
-function StopGame() {
+function stopGame() {
     
     // This will stop the countdown timer when the game stops
     clearInterval(countdownTimer)
@@ -33,11 +33,13 @@ function StopGame() {
     result.style.display = "flex";
 
     // This will deisplay the score of the most recent game
-    summary.textContent.display = " Your score this game was " + score;
+    summary.textContent = " Your score this game was " + score;
 }
 
 // This function will save the recent initals and  score to the local storage 
-function SaveScore (e) {
+function onSaveScore (e) {
+    var initials = document.getElementById("initials").value
+
     if  (initials !== "" ) {
         localStorage.setItem(initials, score);
         document.getElementById("initals").value = "";
@@ -45,13 +47,13 @@ function SaveScore (e) {
 }
 
 // This function changes to show the score.html page
-function ViewScores (e) {
+function onViewScores (e) {
     window.location.href = 'scores.html'
 }
 
-// If the user selects the correct score, their scoe will add one. If not, it will subtract 1
+// If the user selects the correct score, their score will add one. If not, it will subtract 1
 // Also, after the score has been selected and the score has changed, the next question will appear
-function SelectAnswer (e) {
+function onSelectAnswer (e) {
     var correctanswer = questions[currentQuestion].answer;
     var userAnswer = e.target.textContent;
 
@@ -72,7 +74,7 @@ function displayQuestion () {
     console.log (" The question now is " + currentQuestion);
 
     if (currentQuestion >= questions.length) {
-        StopGame ();
+        stopGame ();
         return
     }
 
@@ -89,7 +91,7 @@ function displayQuestion () {
         // This will make a new "div", give the person the choices to answer from, when the click an answer it will run the "SelectAnswer" function
         var option = document.createElement("div");
         option.textContent = question.choices[i];
-        option.onclick = SelectAnswer;
+        option.onclick = onSelectAnswer;
         option.classList.add["option"];
 
         // This will add the persons choice into the options variable
@@ -100,7 +102,7 @@ function displayQuestion () {
 
 
 // This function will start the game
-function StartGame () {
+function onStartGame () {
     
     // This will set the timer to 70 seconds
     secondsleft = 70;
@@ -120,7 +122,7 @@ function StartGame () {
         } else {
 
             // This function will stop the game
-            StopGame();
+            stopGame();
         }
         //If there is still time left, reduce that number by 1
         secondsleft--;
@@ -128,9 +130,9 @@ function StartGame () {
     }, 1000);
     
     // The welcome display will disappear
-    welcome.style.display = "none";
+    welcome.style.display = "flex";
     // The result display will disappear
-    result.style.display = "none";
+    result.style.display = "flex";
     // The quiz display will show
     quiz.style.display = "flex";
 
@@ -138,7 +140,7 @@ function StartGame () {
     displayQuestion();
 }
 
-startQuiz.addEventListener("click", StartGame)
-saveScore.addEventListener("click", SaveScore)
-viewScores.addEventListener("click", ViewScores)
-playAgain.addEventListener("click", StartGame)
+startQuiz.addEventListener("click", onStartGame)
+saveScore.addEventListener("click", onSaveScore)
+viewScores.addEventListener("click", onViewScores)
+playAgain.addEventListener("click", onStartGame)
