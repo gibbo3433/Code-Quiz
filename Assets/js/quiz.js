@@ -98,3 +98,48 @@ function displayQuestion () {
 
 }
 
+
+// This function will start the game
+function StartGame () {
+    
+    // This will set the timer to 70 seconds
+    secondsleft = 70;
+
+    // This will start the game at the first question
+    currentQuestion = 0;
+
+    // This will reset the score ready for this new game
+    score = 0;
+
+    // This will start the countdown timer
+
+    // Set interval is needed as we do not want the timer to loop, not timeout
+    countdownTimer = setInterval(function () {
+
+        if (secondsleft > 0) {
+            timer.textContent = secondsleft;
+        } else {
+
+            // This function will stop the game
+            StopGame();
+        }
+        //If there is still time left, reduce that number by 1
+        secondsleft--;
+
+    }, 1000);
+    
+    // The welcome display will disappear
+    welcome.style.display = "none";
+    // The result display will disappear
+    result.style.display = "none";
+    // The quiz display will show
+    quiz.style.display = "flex";
+
+    // Show the first question
+    displayQuestion();
+}
+
+startQuiz.addEventListener("click", StartGame)
+saveScore.addEventListener("click", SaveScore)
+viewScores.addEventListener("click", ViewScores)
+playAgain.addEventListener("click", StartGame)
