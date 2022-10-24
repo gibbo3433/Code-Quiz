@@ -37,7 +37,7 @@ function StopGame() {
 }
 
 // This function will save the recent initals and  score to the local storage 
-function SaveScore () {
+function SaveScore (e) {
     if  (initials !== "" ) {
         localStorage.setItem(initials, score);
         document.getElementById("initals").value = "";
@@ -45,13 +45,13 @@ function SaveScore () {
 }
 
 // This function changes to show the score.html page
-function ViewScores () {
+function ViewScores (e) {
     window.location.href = 'scores.html'
 }
 
 // If the user selects the correct score, their scoe will add one. If not, it will subtract 1
 // Also, after the score has been selected and the score has changed, the next question will appear
-function SelectAnswer () {
+function SelectAnswer (e) {
     var correctanswer = questions[currentQuestion].answer;
     var userAnswer = e.target.textContent;
 
@@ -112,7 +112,6 @@ function StartGame () {
     score = 0;
 
     // This will start the countdown timer
-
     // Set interval is needed as we do not want the timer to loop, not timeout
     countdownTimer = setInterval(function () {
 
