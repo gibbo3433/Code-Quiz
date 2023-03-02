@@ -59,19 +59,19 @@ function onSelectAnswer (e) {
 
     if (correctanswer === userAnswer) {
         score ++;
-        displayMessage ('You got that right!')
+        displayMessage (message, 'You got that right!')
 
     } else {
         score --;
-        displayMessage ('You got that wrong!')
+        displayMessage (message, 'You got that wrong!')
     }
 
     // shows the next question
     displayQuestion();
 }
 
-function displayMessage(message) {
-    message.textContent = message;
+function displayMessage(messageElement, message) {
+    messageElement.textContent = message;
 
     setTimeout(function () {
         message.textContent = " ";
