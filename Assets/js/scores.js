@@ -14,13 +14,5 @@ for ( var i = 0; i < localStorage.length; i++) {
     var result = document.createElement("div");
     result.classList.add('result');
 
-    tables
-
     result.innerHTML = '<div class="score-item"> ${initials} </div>'
-
-
 }
-
-
-
-backtoQuiz.addEventListener("click", BackToQuiz)
