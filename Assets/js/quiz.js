@@ -88,26 +88,26 @@ function displayQuestion () {
         stopGame ();
         return
     }
+      // Get the current question from the questions array
+  var question = questions[currentQuestion];
 
-    // Load the question into the title for the user to see
-    var question = questions[currentQuestion];
-    document.getElementById("question").textContent = question.title
+  // Display the question title
+  document.getElementById("question").textContent = question.title;
 
-    // Clears the options script back to nothing
-    options.innerHTML = "";
+  // Display the answer choices
+  var choices = question.choices;
 
-    // This will choose the next questions until all the questions have been chosen
-    for (var i = 0; i < question.choices.length; i++) {
-        
-        // This will make a new "div", give the person the choices to answer from, when the click an answer it will run the "SelectAnswer" function
-        var option = document.createElement("div");
-        option.textContent = question.choices[i];
-        option.onclick = onSelectAnswer;
-        option.classList.add["option"];
-
-        // This will add the persons choice into the options variable
-        options.appendChild(option);
-    }
+  // This will put the questions into the options div by grabbing its element
+  var options = document.getElementById("options");
+  options.innerHTML = "";
+  // this will cycle through each question until all questions have been displayed
+  for (var i = 0; i < choices.length; i++) {
+    var option = document.createElement("div");
+    option.textContent = choices[i];
+    option.classList.add("option");
+    option.addEventListener("click", onSelectAnswer);
+    options.appendChild(option);
+  }
 
 }
 
@@ -145,7 +145,7 @@ function onStartGame () {
     // The welcome display will disappear
     welcome.style.display = "none";
     // The result display will disappear
-    result.style.display = "none";
+    // result.style.display = "none";
     quiz.style.display = "flex"
     
 
