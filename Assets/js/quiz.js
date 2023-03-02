@@ -42,7 +42,7 @@ function onSaveScore (e) {
 
     if  (initials !== "" ) {
         localStorage.setItem(initials, score);
-        document.getElementById("initals").value = "";
+        // document.getElementById("initals").value = "";
     }
 }
 
@@ -59,12 +59,23 @@ function onSelectAnswer (e) {
 
     if (correctanswer === userAnswer) {
         score ++;
+        displayMessage ('You got that right!')
 
     } else {
         score --;
+        displayMessage ('You got that wrong!')
     }
 
+    // shows the next question
     displayQuestion();
+}
+
+function displayMessage(message) {
+    message.textContent = message;
+
+    setTimeout(function () {
+        message.textContent = " ";
+    }, 1500);
 }
 
 function displayQuestion () {
@@ -130,9 +141,9 @@ function onStartGame () {
     }, 1000);
     
     // The welcome display will disappear
-    welcome.style.display = "flex";
+    welcome.style.display = "none";
     // The result display will disappear
-    result.style.display = "flex";
+    result.style.display = "none";
     // The quiz display will show
     quiz.style.display = "flex";
 
