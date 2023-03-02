@@ -97,7 +97,7 @@ function displayQuestion () {
     options.innerHTML = "";
 
     // This will choose the next questions until all the questions have been chosen
-    for (var i = 0; 1 < question.choices.length; i++) {
+    for (var i = 0; i < question.choices.length; i++) {
         
         // This will make a new "div", give the person the choices to answer from, when the click an answer it will run the "SelectAnswer" function
         var option = document.createElement("div");
@@ -139,13 +139,15 @@ function onStartGame () {
         secondsleft--;
 
     }, 1000);
-    
+
+    // The quiz display will show
+    quiz.classList.remove("hidden");
     // The welcome display will disappear
     welcome.style.display = "none";
     // The result display will disappear
     result.style.display = "none";
-    // The quiz display will show
-    quiz.style.display = "flex";
+    quiz.style.display = "flex"
+    
 
     // Show the first question
     displayQuestion();

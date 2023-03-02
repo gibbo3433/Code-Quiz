@@ -52,7 +52,6 @@ button, h1 {
     padding: 15px;
     margin: 15px;
     border-radius: 40px;
-    display: flex;
 }
 
 #options {
