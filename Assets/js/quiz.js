@@ -30,10 +30,10 @@ function stopGame() {
 
     // This line will hide the quiz style, and display the result style
     quiz.style.display = "none";
-    result.style.display = "flex";
+    result.style.display = "";
 
     // This will deisplay the score of the most recent game
-    summary.textContent = " Your score this game was " + score;
+    // summary.textContent = " Your score this game was " + score;
 }
 
 // This function will save the recent initals and  score to the local storage 
@@ -64,10 +64,18 @@ function onSelectAnswer (e) {
     } else {
         score --;
         displayMessage (message, 'You got that wrong!')
+        // Subtract 10 seconds from the time if an answer is wrong
+        secondsleft -=10;
+        updateTimer();
     }
 
     // shows the next question
     displayQuestion();
+}
+
+function updateTimer () {
+    // Update the timer when a question is wrong
+    timer.textContent = secondsleft;
 }
 
 function displayMessage(messageElement, message) {
@@ -145,8 +153,9 @@ function onStartGame () {
     // The welcome display will disappear
     welcome.style.display = "none";
     // The result display will disappear
+    result.style.display = "none";
     // result.style.display = "none";
-    quiz.style.display = "flex"
+    quiz.style.display = "flex";
     
 
     // Show the first question
