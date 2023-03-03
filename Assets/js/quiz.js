@@ -37,14 +37,63 @@ function stopGame() {
 }
 
 // This function will save the recent initals and  score to the local storage 
-function onSaveScore (e) {
+function onSaveScore () {
+
+    // Grab the initials from what the user puts in the placeholder
     var initials = document.getElementById("initials").value
 
-    if  (initials !== "" ) {
-        localStorage.setItem(initials, score);
-        // document.getElementById("initals").value = "";
+    // Make an empty array for all the scores and names to go in
+    var scores = [];
+
+    // Grab the local scores from localStorage 
+    var localScores = localStorage.getItem("score");
+
+    if (localScores !== null) {
+        scores = JSON.parse(localScores);
     }
+
+    // Push the name and the score of the person into the local storage
+    scores.push({
+        name: initials,
+        score: currentScore,
+    });
+
+    localStorage.setItem("score", JSON.stringify(scores));
+
+    getHighScores();
+
 }
+
+function getHighScores() {
+    //clear the html file of data
+    highScoreList.innerHTML = "";
+  
+    //display new from the local storage
+    var score = JSON.parse(localStorage.getItem("score"));
+   
+  //sorts scores from highest to lowesst
+    var sortedScores = score.sort((a, b) => b.score - a.score);
+  
+  
+    // save top 5 scores to local storage
+    sortedScores.splice(5);
+  
+    //stores top 5 scores into local storage 
+    localStorage.setItem("topScores", JSON.stringify(sortedScores));
+  
+    
+  //retrieve from local storage
+  var topScores = JSON.parse(localStorage.getItem("topScores"));
+  
+  //mapping top scores into HTML
+    highScoreList.innerHTML = topScores
+      .map((score) => {
+        return `<span>${score.name} - ${score.score}</span>`;
+      }).join("");
+    
+    highScoreList.style.display = "block"
+    
+  }
 
 // This function changes to show the score.html page
 function onViewScores (e) {
@@ -76,6 +125,11 @@ function onSelectAnswer (e) {
 function updateTimer () {
     // Update the timer when a question is wrong
     timer.textContent = secondsleft;
+
+    // Stop the game if there is no time left
+    if (secondsleft <=0) {
+        stopGame();
+    }
 }
 
 function displayMessage(messageElement, message) {
@@ -164,5 +218,5 @@ function onStartGame () {
 
 startQuiz.addEventListener("click", onStartGame)
 saveScore.addEventListener("click", onSaveScore)
-viewScores.addEventListener("click", onViewScores)
 playAgain.addEventListener("click", onStartGame)
+highScores.addEventListener("click", getHighScores);
