@@ -1,76 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coding Quiz - Test your knowledge in this fun coding quiz!</title>
-    <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    
-</head>
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
 
-<body>
-
+  <body>
     <header>
-
-        <div id="timer">
-        </div>
-
+      <div id="timer"></div>
     </header>
 
     <main>
+      <div id="welcome">
+        <h1>It's Quizzing Time!</h1>
+        <button id="startQuiz" class="button">Let's get started</button>
+      </div>
 
-        <div id="welcome">
-            <h1> It's Quizzing Time! </h1>
-            <button id="startQuiz" class="button"> Let's get started </button>
-        </div>
+      <div id="quiz" class="hidden">
+        <div id="question"></div>
 
-        <div id="quiz" class="hidden">
+        <div id="options"></div>
 
-            <div id="question">
-            </div>
+        <div id="message"></div>
+      </div>
 
-            <div id="options">
-            </div>
+      <div>
+        <input
+          type="text"
+          id="initials"
+          class="hidden"
+          placeholder="Who are you?"
+        />
 
-            <div id="message">
-            </div>
+        <button id="saveScore" class="button">Save your score!</button>
 
-        </div>
+        <button id="playAgain" class="button">Have another go!</button>
+      </div>
 
-        <div>
-
-            <input type="text" id="initials" class="hidden" placeholder="Who are you?"/>
-
-            <button id="saveScore" class="button">
-                Save your score!
-            </button>
-
-            <button id="playAgain" class="button">
-                Have another go!
-            </button>
-
-        </div>
-
-        <div id="result">
-            <div id="scoresheet">
-              <div id="result">
-                  <div id="initials" class="score-item">Player's Name</div>
-                  <div id="currentScore">Score</div>
-              </div>
-            </div>
+      <div id="result">
+        <div id="scoresheet">
+          <div id="result">
+            <div id="initials" class="score-item">Player's Name</div>
+            <div id="currentScore">Score</div>
           </div>
-
-        <div id="highScoreList">
-
         </div>
-        
+      </div>
+
+      <div id="highScoreList"></div>
     </main>
-    
-</body>
+  </body>
 
-<script src="assets/js/questions.js"></script>
-<script src="assets/js/quiz.js"></script>
-
+  <script src="/js/questions.js"></script>
+  <script src="/js/quiz.js"></script>
 </html>
