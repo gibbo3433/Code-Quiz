@@ -66,3 +66,10 @@ button, h1 {
     text-align: center;
     justify-content: center;
 } 
+
+#highScoreList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

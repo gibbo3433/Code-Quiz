@@ -1,6 +1,9 @@
 var startQuiz = document.getElementById("startQuiz")
 var saveScore = document.getElementById("saveScore")
 var playAgain = document.getElementById("playAgain")
+var highScores = document.getElementById("viewScores")
+var highScoreList = document.getElementById("highScoreList")
+var textEntry = document.getElementById("initials")
 
 var welcome = document.getElementById("welcome")
 var quiz = document.getElementById("quiz")
@@ -9,16 +12,15 @@ var result = document.getElementById("result")
 var options = document.getElementById("options")
 var message = document.getElementById("message")
 
-
 var summary = document.getElementById("summary")
-
 var timer = document.getElementById("timer")
 
-
+var currentScore = 0;
 var secondsleft = 0;
 var score = 0;
 var currentQuestion = 0;
 var countdownTimer;
+textEntry.style.display = "none"
 
 function stopGame() {
     
@@ -29,6 +31,7 @@ function stopGame() {
     timer.textContent = "";
 
     // This line will hide the quiz style, and display the result style
+    textEntry.style.display = "block"
     quiz.style.display = "none";
     result.style.display = "";
 
@@ -71,7 +74,7 @@ function getHighScores() {
     //display new from the local storage
     var score = JSON.parse(localStorage.getItem("score"));
    
-  //sorts scores from highest to lowesst
+    //sorts scores from highest to lowesst
     var sortedScores = score.sort((a, b) => b.score - a.score);
   
   
@@ -91,7 +94,7 @@ function getHighScores() {
         return `<span>${score.name} - ${score.score}</span>`;
       }).join("");
     
-    highScoreList.style.display = "block"
+    highScoreList.style.display = "flex"
     
   }
 
@@ -107,11 +110,11 @@ function onSelectAnswer (e) {
     var userAnswer = e.target.textContent;
 
     if (correctanswer === userAnswer) {
-        score ++;
+        currentScore += 10;
         displayMessage (message, 'You got that right!')
 
     } else {
-        score --;
+        currentScore -= 5;
         displayMessage (message, 'You got that wrong!')
         // Subtract 10 seconds from the time if an answer is wrong
         secondsleft -=10;
@@ -177,6 +180,8 @@ function displayQuestion () {
 // This function will start the game
 function onStartGame () {
     
+
+    textEntry.style.display = "none"
     // This will set the timer to 70 seconds
     secondsleft = 70;
 
